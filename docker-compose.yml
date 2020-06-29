@@ -1,7 +1,7 @@
 version: "2"
 services:
   grafana:
-    image: grafana/grafana:arm64v8-latest
+    image: grafana/grafana:latest
     container_name: grafana
     restart: always
     ports:
@@ -46,3 +46,8 @@ services:
      - /etc:/rootfs/etc:ro
 networks:
   monitoring:
+volumes:
+  grafana:
+    external: true
+  influxdb:
+    external: true
