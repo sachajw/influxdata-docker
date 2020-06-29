@@ -9,7 +9,8 @@ services:
     networks:
       - monitoring
     volumes:
-      - grafana:/media/store-e-500/influxdata/grafana
+      - /media/store-e-500/influxdata/grafana:grafana
+
   influxdb:
     image: influxdb:arm64v8-1.8
     container_name: influxdb
@@ -19,13 +20,14 @@ services:
     networks:
       - monitoring
     volumes:
-      - influxdb:/media/store-e-500/influxdata/influxdb
+      - /media/store-e-500/influxdata/influxdb:influxdb
     environment:
       - INFLUXDB_DB=telegraf
       - INFLUXDB_USER=telegraf
       - INFLUXDB_ADMIN_ENABLED=true
       - INFLUXDB_ADMIN_USER=admin
       - INFLUXDB_ADMIN_PASSWORD=password
+
   telegraf:
     image: telegraf:arm64v8-latest
     container_name: telegraf
