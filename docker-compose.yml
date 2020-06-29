@@ -17,6 +17,8 @@ services:
     restart: always
     ports:
       - 8086:8086
+      - 8083:8083
+      - 8090:8090
     networks:
       - monitoring
     volumes:
@@ -39,7 +41,8 @@ services:
       HOST_SYS: /rootfs/sys
       HOST_ETC: /rootfs/etc
     volumes:
-     - ./etc/telegraf/telegraf.conf:/telegraf
+     - /etc/default/telegraf:/telegraf
+     - /etc/telegraf/telegraf.conf:/telegraf
      - /var/run/docker.sock:/var/run/docker.sock:ro
      - /sys:/rootfs/sys:ro
      - /proc:/rootfs/proc:ro
