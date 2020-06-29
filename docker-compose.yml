@@ -46,8 +46,3 @@ services:
      - /etc:/rootfs/etc:ro
 networks:
   monitoring:
-volumes:
-  grafana:
-    external: true
-  influxdb:
-    external: true
