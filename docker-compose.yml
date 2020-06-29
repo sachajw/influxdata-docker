@@ -29,7 +29,7 @@ services:
       - INFLUXDB_ADMIN_PASSWORD=password
 
   telegraf:
-    image: telegraf:arm64v8-latest
+    image: arm64v8/telegraf:latest
     container_name: telegraf
     restart: always
     extra_hosts:
