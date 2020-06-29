@@ -12,7 +12,7 @@ services:
       - /media/store-e-500/influxdata/grafana:grafana
 
   influxdb:
-    image: arm64v8/influxdb
+    image: arm64v8/influxdb:latest
     container_name: influxdb
     restart: always
     ports:
