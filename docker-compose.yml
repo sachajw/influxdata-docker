@@ -45,7 +45,7 @@ services:
 networks:
   monitoring:
 volumes:
-  grafana-volume:
+  grafana:
     external: true
-  influxdb-volume:
+  influxdb:
     external: true
