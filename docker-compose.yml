@@ -9,7 +9,7 @@ services:
     networks:
       - monitoring
     volumes:
-      - /media/store-e-500/influxdata/grafana:/grafana
+      - grafana:/media/store-e-500/influxdata/grafana/monitoring
 
   influxdb:
     image: arm64v8/influxdb:latest
@@ -37,16 +37,15 @@ services:
     extra_hosts:
      - "influxdb:192.168.0.248"
     environment:
-      HOST_PROC: /rootfs/proc
-      HOST_SYS: /rootfs/sys
-      HOST_ETC: /rootfs/etc
+      HOST_PROC: /host/proc
+      HOST_SYS: /host/sys
+      HOST_ETC: /host/etc
     volumes:
-     - /etc/default/telegraf:/telegraf
-     - /etc/telegraf/telegraf.conf:/telegraf
+     - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
      - /var/run/docker.sock:/var/run/docker.sock:ro
-     - /sys:/rootfs/sys:ro
-     - /proc:/rootfs/proc:ro
-     - /etc:/rootfs/etc:ro
+     - /sys:/host/sys:ro
+     - /proc:/host/proc:ro
+     - /etc:/host/etc:ro
 networks:
   monitoring:
 volumes:
