@@ -1,0 +1,15 @@
+        volumes:
+      - /media/store-e-500/influxdata/grafana:/grafana
+
+    
+    
+    
+    
+    
+    volumes:
+     - /etc/default/telegraf:/telegraf
+     - /etc/telegraf/telegraf.conf:/telegraf
+     - /var/run/docker.sock:/var/run/docker.sock:ro
+     - /sys:/host/sys:ro
+     - /proc:/host/proc:ro
+     - /etc:/host/etc:ro
