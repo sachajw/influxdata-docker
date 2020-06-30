@@ -1,0 +1,56 @@
+version: "2"
+services:
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: always
+    ports:
+      - 3000:3000
+    networks:
+      - monitoring
+    volumes:
+      - /media/store-e-500/influxdata/grafana:/grafana
+
+  influxdb:
+    image: arm64v8/influxdb:latest
+    container_name: influxdb
+    restart: always
+    ports:
+      - 8086:8086
+      - 8083:8083
+      - 8090:8090
+    networks:
+      - monitoring
+    volumes:
+      - /media/store-e-500/influxdata/influxdb:/influxdb
+    environment:
+      - INFLUXDB_DB=telegraf
+      - INFLUXDB_USER=telegraf
+      - INFLUXDB_ADMIN_ENABLED=true
+      - INFLUXDB_ADMIN_USER=admin
+      - INFLUXDB_ADMIN_PASSWORD=password
+
+  telegraf:
+    image: arm64v8/telegraf:latest
+    container_name: telegraf
+    restart: always
+    extra_hosts:
+     - "influxdb:192.168.0.248"
+    environment:
+      HOST_PROC: /rootfs/proc
+      HOST_SYS: /rootfs/sys
+      HOST_ETC: /rootfs/etc
+    volumes:
+     - /etc/default/telegraf:/telegraf
+     - /etc/telegraf/telegraf.conf:/telegraf
+     - /var/run/docker.sock:/var/run/docker.sock:ro
+     - /sys:/rootfs/sys:ro
+     - /proc:/rootfs/proc:ro
+     - /etc:/rootfs/etc:ro
+networks:
+  monitoring:
+volumes:
+  grafana:
+    external: true
+  influxdb:
+    external: true
