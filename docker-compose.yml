@@ -41,7 +41,7 @@ services:
       HOST_SYS: /sys
       HOST_ETC: /etc
     volumes:
-     - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
+     - /influxdata-docker/telegraf.conf:/etc/telegraf/telegraf.conf:ro
      - /var/run/docker.sock:/var/run/docker.sock:ro
      - /sys:/sys:ro
      - /proc:/proc:ro
