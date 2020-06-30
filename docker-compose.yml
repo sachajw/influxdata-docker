@@ -37,15 +37,15 @@ services:
     extra_hosts:
      - "influxdb:192.168.0.248"
     environment:
-      HOST_PROC: /rootfs/proc
-      HOST_SYS: /rootfs/sys
-      HOST_ETC: /rootfs/etc
+      HOST_PROC: /proc
+      HOST_SYS: /sys
+      HOST_ETC: /etc
     volumes:
      - ./telegraf.conf:/etc/telegraf/telegraf.conf:ro
      - /var/run/docker.sock:/var/run/docker.sock:ro
-     - /sys:/rootfs/sys:ro
-     - /proc:/rootfs/proc:ro
-     - /etc:/rootfs/etc:ro
+     - /sys:/sys:ro
+     - /proc:/proc:ro
+     - /etc:/etc:ro
 networks:
   monitoring:
 volumes:
