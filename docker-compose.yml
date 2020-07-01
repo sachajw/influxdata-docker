@@ -37,6 +37,7 @@ services:
     extra_hosts:
      - "influxdb:192.168.0.248"
     environment:
+      INFLUX_TOKEN: SggipygYGEFOzuSoYBjRVv8OJT4grZUOrY4yIPTJcaZzFW5tMuYM4EN_fMY1n3pWF8HaOp7VgvjQt43ybcT66g==
       HOST_PROC: /proc
       HOST_SYS: /sys
       HOST_ETC: /etc
