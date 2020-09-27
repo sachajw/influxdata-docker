@@ -9,7 +9,7 @@ services:
     networks:
       - monitoring
     volumes:
-      - grafana:/media/store-e-500/influxdata/grafana/monitoring
+      - grafana:/influxdata/grafana/monitoring
 
   influxdb:
     image: arm64v8/influxdb:latest
@@ -22,7 +22,7 @@ services:
     networks:
       - monitoring
     volumes:
-      - /media/store-e-500/influxdata/influxdb:/influxdb
+      - /influxdata/influxdb:/influxdb
     environment:
       - INFLUXDB_DB=telegraf
       - INFLUXDB_USER=telegraf
